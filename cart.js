@@ -20,20 +20,27 @@ class ShoppingCart {
         return acc;
       }, {});
   
-      let total = 0;
+      let totalPaisa = 0;
       for (const [item, count] of Object.entries(counts)) {
         switch (item) {
           case 'Melon':
-            total += Math.ceil(count / 2) * priceTable.Melon; //buy one get one free offer;
+            totalPaisa += Math.ceil(count / 2) * priceTable.Melon;
             break;
           case 'Lime':
-            total += (Math.floor(count / 3) * 2 + (count % 3)) * priceTable.Lime; //three for the price of two offer;
+            totalPaisa += (Math.floor(count / 3) * 2 + (count % 3)) * priceTable.Lime;
             break;
           default:
-            total += priceTable[item] * count;
+            totalPaisa += priceTable[item] * count;
         }
       }
-      return total
+  
+      return totalPaisa/100; 
+    }
+  
+    getTotalFormattedINR() {
+      const paisa = this.getTotal();
+      const rupees = (paisa).toFixed(2);
+      return `₹${rupees}`; 
     }
   
     viewCart() {

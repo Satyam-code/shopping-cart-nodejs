@@ -23,8 +23,8 @@ app.get('/cart', (req, res) => {
 
 // Get total
 app.get('/cart/total', (req, res) => {
-  const total = cart.getTotal();
-  res.json({ total: `${total} p`});
+  const totalFormatted = cart.getTotalFormattedINR();
+  res.json({ total: totalFormatted });
 });
 
 // Clear cart
